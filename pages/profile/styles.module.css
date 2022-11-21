@@ -1,0 +1,48 @@
+.container {
+  padding: 0px 17px;
+}
+
+.profileText {
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.nameAndAvatar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.imgContainer {
+  width: 50px;
+  height: 50px;
+}
+
+.img {
+  border-radius: 50%;
+  max-width: 50px;
+  height: 50px;
+}
+
+.nameContainer {
+  width: 80%;
+  margin-bottom: 12px;
+}
+
+.nameInputContainer {
+  margin-top: 4px;
+  padding: 4px 8px;
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+}
+.nameInput {
+  width: 100%;
+  border: none;
+  outline: none;
+}
+.descriptionTextarea {
+  width: 100%;
+  outline: none;
+  min-height: 249px;
+  border: 1px solid #ebebeb;
+  border-radius: 8px;
+}
