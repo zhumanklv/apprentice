@@ -12,7 +12,7 @@ const Profile = () => {
         <div className={styles.profileText}>Profile</div>
         <div className={styles.nameAndAvatar}>
           <div className={styles.imgContainer}>
-            <Image src={avatar} className={styles.img} />
+            <Image src={avatar} className={styles.img} alt="avatar" />
           </div>
           <div className={styles.nameContainer}>
             <div>Name*</div>
@@ -31,8 +31,8 @@ const Profile = () => {
           <div>Degree*</div>
           <div className={styles.nameInputContainer}>
             <select className={styles.nameInput}>
-              <option>Bachelor's</option>
-              <option>Master's</option>
+              <option>Bachelor&apos;s</option>
+              <option>Master&apos;s</option>
             </select>
           </div>
         </div>
@@ -43,7 +43,7 @@ const Profile = () => {
         <div>
           <div>Resume*</div>
           <label>
-            <Image src={file} />
+            <Image src={file} alt="resume" />
             <input type="file" style={{ display: "none" }} />
           </label>
         </div>
