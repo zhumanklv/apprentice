@@ -1,0 +1,124 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sections {
+  display: flex;
+  padding: 0 5%;
+  align-items: flex-end;
+}
+
+.mainTitle {
+  color: #097bd2;
+  font-size: 40px;
+  font-weight: 600;
+  margin-left: 5%;
+  margin-bottom: 14px;
+}
+
+.internships {
+  margin-left: 5%;
+}
+
+.selectedSection {
+  border-top: 1px solid #000000;
+}
+
+.searchBar {
+  width: 90%;
+  border: 1px solid #ebebeb;
+  border-radius: 5px;
+  padding: 5px 8px;
+  margin-left: 5%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.input {
+  border: none;
+  outline: none;
+  height: 18px;
+}
+
+.jobsBlock {
+  background-color: #f8f8f8;
+  height: 100%;
+  flex-basis: auto;
+  padding: 8px 11px;
+}
+
+.iconContainer {
+  max-width: 24px;
+  max-height: 24px;
+}
+
+.outerContainer {
+  border: 1px solid rgba(196, 196, 196, 0.5);
+  border-radius: 10px;
+  background-color: white;
+  margin-bottom: 8px;
+  height: 150px;
+}
+
+.firstRow {
+  display: flex;
+  width: 94%;
+  margin: 0 auto;
+  margin-top: 14px;
+  justify-content: flex-start;
+}
+
+.position {
+  margin-left: 10px;
+}
+
+.salary {
+  align-self: flex-end;
+}
+
+.secondRow {
+  composes: firstRow;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: #f8f8f8;
+  margin-top: 14px;
+}
+
+.location {
+  color: #999999;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.thirdRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 94%;
+  margin: 18px auto 0;
+}
+.buttons {
+  background: none;
+  border: none;
+  width: 87px;
+  height: 27px;
+  text-align: center;
+}
+
+.buttonsSave {
+  composes: buttons;
+  border: 1px solid black;
+}
+
+.buttonsApply {
+  composes: buttons;
+  border: 1px solid #445194;
+  color: #445194;
+  margin-left: 21px;
+}
+
+.postDate {
+  color: #999999;
+  font-size: 12px;
+}

@@ -1,0 +1,24 @@
+.headerContainer {
+  width: 100%;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.apprentice {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.forStudents {
+  font-size: 32px;
+  color: #097bd2;
+  font-weight: 500;
+}
+
+.internshipsAndJobs {
+  font-size: 16px;
+  font-weight: 500;
+  color: black;
+}
