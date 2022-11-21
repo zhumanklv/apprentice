@@ -26,7 +26,7 @@ const Login = () => {
       <Input title="Password" value="password" handleChange={handlePassword} />
       <button className={styles.loginButton}>Login</button>
       <div className={styles.signupLink}>
-        Don't have an account?{" "}
+        Don&apos;t have an account?{" "}
         <span
           style={{ textDecoration: "underline" }}
           onClick={() => router.push("/signup")}

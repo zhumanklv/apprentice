@@ -27,7 +27,7 @@ const Signup = () => {
       />
       <Input title="Password" value="password" handleChange={handlePassword} />
       <div className={styles.selectContainer}>
-        <div>I'm looking for</div>
+        <div>I&apos;m looking for</div>
         <select className={styles.select}>
           <option>Jobs</option>
           <option>Internships</option>
