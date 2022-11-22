@@ -8,6 +8,7 @@
 }
 
 .nameAndAvatar {
+  margin-top: 12px;
   display: flex;
   justify-content: space-between;
 }
@@ -45,4 +46,21 @@
   min-height: 249px;
   border: 1px solid #ebebeb;
   border-radius: 8px;
+  resize: none;
+}
+.saveButtonContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  bottom: 18px;
+}
+.buttonsSave {
+  background: none;
+  border: none;
+  width: 50%;
+  height: 27px;
+  text-align: center;
+  border: 1px solid black;
+  padding: 0;
 }
