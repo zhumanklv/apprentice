@@ -52,8 +52,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
-  position: absolute;
-  bottom: 18px;
+  margin-top: 12px;
 }
 .buttonsSave {
   background: none;
