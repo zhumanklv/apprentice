@@ -1,0 +1,17 @@
+.container {
+  width: 112px;
+  height: 52px;
+  padding: 12px 12px;
+  border: 1px solid #999999;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.innerContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  color: #545454;
+  font-size: 10px;
+}

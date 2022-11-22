@@ -16,3 +16,9 @@
   width: 25px;
   border-radius: 50%;
 }
+
+.profileModal {
+  position: absolute;
+  top: 42px;
+  right: 8px;
+}
