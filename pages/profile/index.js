@@ -17,17 +17,17 @@ const Profile = () => {
           <div className={styles.nameContainer}>
             <div>Name*</div>
             <div className={styles.nameInputContainer}>
-              <input placeholder="name" className={styles.nameInput} />
+              <input placeholder="Name" className={styles.nameInput} />
             </div>
           </div>
         </div>
-        <div>
+        <div style={{ marginTop: "12px" }}>
           <div>Location*</div>
           <div className={styles.nameInputContainer}>
-            <input placeholder="location" className={styles.nameInput} />
+            <input placeholder="Location" className={styles.nameInput} />
           </div>
         </div>
-        <div>
+        <div style={{ marginTop: "12px" }}>
           <div>Degree*</div>
           <div className={styles.nameInputContainer}>
             <select className={styles.nameInput}>
@@ -36,17 +36,20 @@ const Profile = () => {
             </select>
           </div>
         </div>
-        <div>
+        <div style={{ marginTop: "12px" }}>
           <div>Description*</div>
           <textarea className={styles.descriptionTextarea} />
         </div>
-        <div>
+        <div style={{ marginTop: "12px" }}>
           <div>Resume*</div>
           <label>
             <Image src={file} alt="resume" />
             <input type="file" style={{ display: "none" }} />
           </label>
         </div>
+      </div>
+      <div className={styles.saveButtonContainer}>
+        <button className={styles.buttonsSave}>Save</button>
       </div>
     </>
   );
