@@ -2,6 +2,7 @@ import Image from "next/image";
 import styles from "./styles.module.css";
 import pinMap from "~assets/icon-map-pin.svg";
 import googleIcon from "~assets/google-icon.png";
+import { useRouter } from "next/router";
 const arr = [
   {
     name: "Google",
@@ -54,6 +55,7 @@ const arr = [
 ];
 
 export const JobsArray = ({ length, backgroundColor }) => {
+  const router = useRouter();
   return (
     <div
       className={styles.jobsBlock}
@@ -61,7 +63,13 @@ export const JobsArray = ({ length, backgroundColor }) => {
     >
       {arr.slice(0, length).map((elem, i) => {
         return (
-          <div className={styles.outerContainer} key={i}>
+          <div
+            className={styles.outerContainer}
+            key={i}
+            onClick={() => {
+              router.push("/jobs/i");
+            }}
+          >
             <div className={styles.firstRow}>
               <div className={styles.iconContainer}>
                 <Image
