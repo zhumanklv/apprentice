@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 const JobDescription = () => {
   const router = useRouter();
   return (
-    <>
+    <div className={styles.outerContainer}>
       <div className={styles.container}>
         <div className={styles.firstRow}>
           <div className={styles.iconContainer}>
@@ -71,7 +71,7 @@ const JobDescription = () => {
           <button className={styles.saveButton}>Save</button>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 
