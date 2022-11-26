@@ -18,6 +18,7 @@
   border: 1px solid #ebebeb;
   border-radius: 5px;
   padding: 5px 8px;
+  display: flex;
 }
 
 .input {
