@@ -11,7 +11,9 @@ export const Header = ({ headerHeight }) => {
     <>
       <header ref={headerHeight}>
         <div className={styles.header}>
-          <div className={styles.logo}>Apprentice</div>
+          <Link href="/">
+            <div className={styles.logo}>Apprentice</div>
+          </Link>
           <div
             onClick={() => {
               setModal(!isModal);
