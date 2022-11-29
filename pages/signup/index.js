@@ -1,40 +1,185 @@
 import styles from "./styles.module.css";
 import { LoginHeader } from "~components/LoginHeader";
 import { Input } from "~components/Input";
-import { useCallback, useState } from "react";
+import { useCallback, useState, useMemo } from "react";
 import { useRouter } from "next/router";
+import Image from "next/image";
+import show from "~assets/show.png";
+import hide from "~assets/hide.png";
+import axios from "axios";
 const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [wrongPasswordFormat, setWrongPassword] = useState(false);
+  const [passwordShown, setPasswordShown] = useState(false);
+  const [confirmpasswordShown, setConfirmpasswordShown] = useState(false);
+  const [notMatchingPasswords, setNotMatching] = useState(false);
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
+  const [isEmployer, setIsEmployer] = useState(true);
   const router = useRouter();
+
+  const handleName = useCallback((e) => {
+    setName(e.target.value);
+  }, []);
+
+  const handleSurname = useCallback((e) => {
+    setSurname(e.target.value);
+  }, []);
   const handleEmail = useCallback((e) => {
     setEmail(e.target.value);
   }, []);
 
-  const handlePassword = useCallback((e) => {
-    setPassword(e.target.value);
-  }, []);
+  const handlePassword = useCallback(
+    (e) => {
+      if (wrongPasswordFormat) {
+        setWrongPassword(false);
+      }
+      if (notMatchingPasswords) {
+        setNotMatching(false);
+      }
+      setPassword(e.target.value);
+    },
+    [wrongPasswordFormat, notMatchingPasswords]
+  );
+
+  const handleConfirmPassword = useCallback(
+    (e) => {
+      if (notMatchingPasswords) {
+        setNotMatching(false);
+      }
+      setConfirmPassword(e.target.value);
+    },
+    [notMatchingPasswords]
+  );
+
+  const handleSubmit = useCallback(async (e) => {
+    e.preventDefault();
+
+    let regex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+    if (!password.match(regex)) {
+      setWrongPassword(true);
+      return;
+    }
+
+    if (password !== confirmPassword) {
+      setNotMatching(true);
+    }
+    console.log("submitted");
+
+    const response = await axios.post(
+      "http://localhost:8080/api/v1/auth/user/register",
+      JSON.stringify({
+        email,
+        name,
+        surname,
+        password,
+        user_type: isEmployer ? 1 : 2,
+      }),
+      {
+        headers: {
+          "Content-type": "application/json",
+          withCredentials: true,
+        },
+      }
+    );
+  });
+
+  const containerStyle = useMemo(() => {
+    return confirmPassword !== "" && password !== confirmPassword
+      ? { border: "1px solid red" }
+      : {};
+  }, [confirmPassword]);
   return (
     <div className={styles.container}>
       <LoginHeader />
       <div className={styles.loginText}>Create an account</div>
-      <Input title="First name" value="First name" />
-      <Input title="Last name" value="Last name" />
-      <Input
-        title="Email"
-        value="example@gmail.com"
-        handleChange={handleEmail}
-      />
-      <Input title="Password" value="password" handleChange={handlePassword} />
-      <div className={styles.selectContainer}>
-        <div>I&apos;m looking for</div>
-        <select className={styles.select}>
-          <option>Jobs</option>
-          <option>Internships</option>
-          <option>Both</option>
-        </select>
-      </div>
-      <button className={styles.loginButton}>Sign Up</button>
+      <form onSubmit={handleSubmit}>
+        <Input
+          title="First name"
+          placeholder="First name"
+          handleChange={handleName}
+        />
+        <Input
+          title="Last name"
+          placeholder="Last name"
+          handleChange={handleSurname}
+        />
+        <Input
+          title="Email"
+          placeholder="example@gmail.com"
+          handleChange={handleEmail}
+        />
+        <div className={styles.inputOutercontainer}>
+          <div className={styles.title}>{"Password"}</div>
+          <div
+            className={styles.inputContainer}
+            style={wrongPasswordFormat ? { border: "1px solid red" } : {}}
+          >
+            <input
+              type={passwordShown ? "text" : "password"}
+              className={styles.input}
+              placeholder={"password"}
+              onChange={handlePassword}
+              autoComplete="on"
+            />
+            <span onClick={() => setPasswordShown(!passwordShown)}>
+              <Image
+                src={passwordShown ? show : hide} //TODO add strikethrough with css rather than downloading 2 images
+                alt="showPassword"
+                width="30"
+                height="30"
+              />
+            </span>
+          </div>
+        </div>
+        {wrongPasswordFormat && (
+          <span style={{ color: "red" }}>
+            password should contain at least 8 characters, 1 uppercase letter, 1
+            lowercase letter, 1 special character
+          </span>
+        )}
+        <div className={styles.inputOutercontainer}>
+          <div className={styles.title}>{"Confirm password"}</div>
+          <div className={styles.inputContainer} style={containerStyle}>
+            <input
+              type={confirmpasswordShown ? "text" : "password"}
+              className={styles.input}
+              placeholder={"confirm password"}
+              onChange={handleConfirmPassword}
+              autoComplete="on"
+            />
+            <span
+              onClick={() => setConfirmpasswordShown(!confirmpasswordShown)}
+            >
+              <Image
+                src={confirmpasswordShown ? show : hide} //TODO add strikethrough with css rather than downloading 2 images
+                alt="showPassword"
+                width="30"
+                height="30"
+              />
+            </span>
+          </div>
+        </div>
+        {notMatchingPasswords && (
+          <span style={{ color: "red" }}>passwords do not match</span>
+        )}
+        <div className={styles.selectContainer}>
+          <div>I&apos;m</div>
+          <select
+            className={styles.select}
+            onChange={() => {
+              setIsEmployer(!isEmployer);
+            }}
+          >
+            <option>Hiring</option>
+            <option>Looking for jobs and/or internships</option>
+          </select>
+        </div>
+        <button className={styles.loginButton}>Sign Up</button>
+      </form>
       <div className={styles.signupLink}>
         Already have an account?{" "}
         <span
