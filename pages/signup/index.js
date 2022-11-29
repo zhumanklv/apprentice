@@ -58,7 +58,7 @@ const Signup = () => {
     e.preventDefault();
 
     let regex =
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*?&-]{8,40}$/;
     if (!password.match(regex)) {
       setWrongPassword(true);
       return;
