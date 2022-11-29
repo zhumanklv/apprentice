@@ -9,6 +9,7 @@ import hide from "~assets/hide.png";
 import axios from "axios";
 const Signup = () => {
   const [email, setEmail] = useState("");
+  const [emptyEmail, setEmptyEmail] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [wrongPasswordFormat, setWrongPassword] = useState(false);
@@ -16,20 +17,40 @@ const Signup = () => {
   const [confirmpasswordShown, setConfirmpasswordShown] = useState(false);
   const [notMatchingPasswords, setNotMatching] = useState(false);
   const [name, setName] = useState("");
+  const [emptyName, setEmptyName] = useState(false);
   const [surname, setSurname] = useState("");
+  const [emptySurname, setEmptySurname] = useState(false);
   const [isEmployer, setIsEmployer] = useState(true);
   const router = useRouter();
 
-  const handleName = useCallback((e) => {
-    setName(e.target.value);
-  }, []);
+  const handleName = useCallback(
+    (e) => {
+      if (emptyName) {
+        setEmptyName(false);
+      }
+      setName(e.target.value);
+    },
+    [emptyName]
+  );
 
-  const handleSurname = useCallback((e) => {
-    setSurname(e.target.value);
-  }, []);
-  const handleEmail = useCallback((e) => {
-    setEmail(e.target.value);
-  }, []);
+  const handleSurname = useCallback(
+    (e) => {
+      if (emptySurname) {
+        setEmptySurname(false);
+      }
+      setSurname(e.target.value);
+    },
+    [emptySurname]
+  );
+  const handleEmail = useCallback(
+    (e) => {
+      if (emptyEmail) {
+        setEmptyEmail(false);
+      }
+      setEmail(e.target.value);
+    },
+    [emptyEmail]
+  );
 
   const handlePassword = useCallback(
     (e) => {
@@ -59,13 +80,23 @@ const Signup = () => {
 
     let regex =
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*?&-]{8,40}$/;
-    if (!password.match(regex)) {
+    if (name === "") {
+      setEmptyName(true);
+      return;
+    } else if (surname === "") {
+      setEmptySurname(true);
+      return;
+    } else if (email === "") {
+      setEmptyEmail(true);
+      return;
+    } else if (!password.match(regex)) {
       setWrongPassword(true);
       return;
     }
 
     if (password !== confirmPassword) {
       setNotMatching(true);
+      return;
     }
     console.log("submitted");
 
@@ -102,16 +133,25 @@ const Signup = () => {
           placeholder="First name"
           handleChange={handleName}
         />
+        {emptyName && (
+          <span style={{ color: "red" }}>Name cannot be empty</span>
+        )}
         <Input
           title="Last name"
           placeholder="Last name"
           handleChange={handleSurname}
         />
+        {emptySurname && (
+          <span style={{ color: "red" }}>Last name cannot be empty</span>
+        )}
         <Input
           title="Email"
           placeholder="example@gmail.com"
           handleChange={handleEmail}
         />
+        {emptyEmail && (
+          <span style={{ color: "red" }}>Email field cannot be empty</span>
+        )}
         <div className={styles.inputOutercontainer}>
           <div className={styles.title}>{"Password"}</div>
           <div
