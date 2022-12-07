@@ -10,6 +10,7 @@ import axios from "axios";
 import { BASE_URL, emailRegex } from "~assets/basic";
 const Signup = () => {
   const [email, setEmail] = useState("");
+  const [emptyEmail, setEmptyEmail] = useState(false);
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [wrongPasswordFormat, setWrongPassword] = useState(false);
@@ -17,22 +18,42 @@ const Signup = () => {
   const [confirmpasswordShown, setConfirmpasswordShown] = useState(false);
   const [notMatchingPasswords, setNotMatching] = useState(false);
   const [name, setName] = useState("");
+  const [emptyName, setEmptyName] = useState(false);
   const [surname, setSurname] = useState("");
+  const [emptySurname, setEmptySurname] = useState(false);
   const [isEmployer, setIsEmployer] = useState(true);
   const [success, setSuccess] = useState(false);
   const [clicked, setClicked] = useState(false);
   const router = useRouter();
 
-  const handleName = useCallback((e) => {
-    setName(e.target.value);
-  }, []);
+  const handleName = useCallback(
+    (e) => {
+      if (emptyName) {
+        setEmptyName(false);
+      }
+      setName(e.target.value);
+    },
+    [emptyName]
+  );
 
-  const handleSurname = useCallback((e) => {
-    setSurname(e.target.value);
-  }, []);
-  const handleEmail = useCallback((e) => {
-    setEmail(e.target.value);
-  }, []);
+  const handleSurname = useCallback(
+    (e) => {
+      if (emptySurname) {
+        setEmptySurname(false);
+      }
+      setSurname(e.target.value);
+    },
+    [emptySurname]
+  );
+  const handleEmail = useCallback(
+    (e) => {
+      if (emptyEmail) {
+        setEmptyEmail(false);
+      }
+      setEmail(e.target.value);
+    },
+    [emptyEmail]
+  );
 
   const handlePassword = useCallback(
     (e) => {
@@ -61,10 +82,6 @@ const Signup = () => {
     e.preventDefault();
 
     let regex =
-<<<<<<< Updated upstream
-      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
-    if (!password.match(regex)) {
-=======
       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&-])[A-Za-z\d@$!%*?&-]{8,40}$/;
     if (name === "") {
       setEmptyName(true);
@@ -76,13 +93,13 @@ const Signup = () => {
       setEmptyEmail(true);
       return;
     } else if (!password.match(regex)) {
->>>>>>> Stashed changes
       setWrongPassword(true);
       return;
     }
 
     if (password !== confirmPassword) {
       setNotMatching(true);
+      return;
     }
     console.log("submitted");
     setClicked(true);
@@ -129,31 +146,9 @@ const Signup = () => {
   return (
     <div className={styles.container}>
       <LoginHeader />
-<<<<<<< Updated upstream
-      <div className={styles.loginText}>Create an account</div>
-      <form onSubmit={handleSubmit}>
-        <Input
-          title="First name"
-          placeholder="First name"
-          handleChange={handleName}
-        />
-        <Input
-          title="Last name"
-          placeholder="Last name"
-          handleChange={handleSurname}
-        />
-        <Input
-          title="Email"
-          placeholder="example@gmail.com"
-          handleChange={handleEmail}
-        />
-        <div className={styles.inputOutercontainer}>
-          <div className={styles.title}>{"Password"}</div>
-=======
       {success ? (
         <div className={styles.signUpContainer}>
           <div className={styles.signUpThanks}>Thanks for signing up.</div>
->>>>>>> Stashed changes
           <div
             style={{
               display: "flex",
