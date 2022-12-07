@@ -21,6 +21,11 @@
   margin-top: 20px;
 }
 
+.successDiv {
+  composes: loginButton;
+  background-color: #00ff33;
+  color: black;
+}
 .signupLink {
   color: black;
   width: 100%;
@@ -70,4 +75,40 @@
   width: 100%;
   border: none;
   outline: none;
+}
+
+.signUpContainer {
+  margin-top: 100px;
+}
+
+.signUpThanks {
+  font-size: 25px;
+  width: 100%;
+  text-align: center;
+}
+
+.spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-left: 8px;
+}
+.spinner:after {
+  content: " ";
+  display: block;
+  width: 14px;
+  height: 14px;
+
+  border-radius: 50%;
+  border: 2px solid #fff;
+  border-color: #000 transparent #000 transparent;
+  animation: spinner 1.2s linear infinite;
+}
+@keyframes spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

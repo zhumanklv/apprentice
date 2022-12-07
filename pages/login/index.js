@@ -4,6 +4,7 @@ import { Input } from "~components/Input";
 import { useCallback, useContext, useState } from "react";
 import { useRouter } from "next/router";
 import AuthContext from "~context/AuthContext";
+import { BASE_URL, emailRegex } from "~assets/basic";
 import axios from "axios";
 const Login = () => {
   const { setAuth } = useContext(AuthContext);
@@ -11,6 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState(false);
   const [err, setErr] = useState("");
   const [success, setSuccess] = useState(false);
+  const [clicked, setClicked] = useState(false);
   const router = useRouter();
   const handleEmail = useCallback((e) => {
     setEmail(e.target.value);
@@ -23,9 +25,10 @@ const Login = () => {
   const handleSubmit = useCallback(async (e) => {
     e.preventDefault();
     console.log("submitted");
+    setClicked(true);
     try {
       const response = await axios.post(
-        "http://localhost:8080/api/v1/auth/user/login",
+        BASE_URL + "/api/v1/auth/user/login",
         JSON.stringify({
           email,
           password,
@@ -37,8 +40,19 @@ const Login = () => {
           },
         }
       );
-      if (response.data.accessToken) setSuccess(true);
+      console.log(
+        "response.data.data.accessToken",
+        response.data.data.accessToken
+      );
+      if (response.data.data?.accessToken) {
+        console.log("sucess   sss");
+        const accessToken = response.data.data.accessToken;
+        setAuth({ accessToken, email });
+        setSuccess(true);
+        router.push("/");
+      }
     } catch (e) {
+      setClicked(false);
       console.log(e);
       setErr(e.message);
     }
@@ -61,7 +75,9 @@ const Login = () => {
           handleChange={handlePassword}
           isPassword
         />
-        <button className={styles.loginButton}>Login</button>
+        <button className={styles.loginButton} disabled={clicked}>
+          Login
+        </button>
       </form>
       <div className={styles.signupLink}>
         Don&apos;t have an account?{" "}
