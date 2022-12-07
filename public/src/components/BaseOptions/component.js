@@ -5,25 +5,23 @@ import briefcase from "~assets/icon-briefcase.svg";
 import inbox from "~assets/icon-inbox.svg";
 import bookmark from "~assets/icon-bookmark.svg";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { useState } from "react";
 export const Base = ({ children }) => {
   const [tab, setTab] = useState("home");
+  const router = useRouter();
   return (
     <div className={styles.home}>
       <div className={styles.children}>{children}</div>
       <div className={styles.container}>
         <div className={styles.innerContainer}>
           <Link href="/">
-            <span
-              onClick={() => {
-                setTab("home");
-              }}
-            >
+            <span>
               <svg
                 width="50"
                 height="50"
                 viewBox="0 0 50 50"
-                fill={tab === "home" ? "black" : "none"}
+                fill="none"
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <path
@@ -35,44 +33,38 @@ export const Base = ({ children }) => {
                 />
                 <path
                   d="M21.25 37.5V25H28.75V37.5"
-                  stroke={tab === "home" ? "white" : "black"}
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
-              </svg>
-            </span>
-          </Link>
-          <Link href="/jobs">
-            <span
-              onClick={() => {
-                setTab("jobs");
-              }}
-            >
-              <svg
-                width="50"
-                height="50"
-                viewBox="0 0 50 50"
-                fill={tab === "jobs" ? "black" : "none"}
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M35 18.75H15C13.6193 18.75 12.5 19.8693 12.5 21.25V33.75C12.5 35.1307 13.6193 36.25 15 36.25H35C36.3807 36.25 37.5 35.1307 37.5 33.75V21.25C37.5 19.8693 36.3807 18.75 35 18.75Z"
                   stroke="black"
                   stroke-width="2"
                   stroke-linecap="round"
                   stroke-linejoin="round"
                 />
-                <path
-                  d="M30 36.25V16.25C30 15.587 29.7366 14.9511 29.2678 14.4822C28.7989 14.0134 28.163 13.75 27.5 13.75H22.5C21.837 13.75 21.2011 14.0134 20.7322 14.4822C20.2634 14.9511 20 15.587 20 16.25V36.25"
-                  stroke={tab === "jobs" ? "black" : "none"}
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                />
               </svg>
             </span>
           </Link>
+          <span>
+            <svg
+              width="50"
+              height="50"
+              viewBox="0 0 50 50"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M35 18.75H15C13.6193 18.75 12.5 19.8693 12.5 21.25V33.75C12.5 35.1307 13.6193 36.25 15 36.25H35C36.3807 36.25 37.5 35.1307 37.5 33.75V21.25C37.5 19.8693 36.3807 18.75 35 18.75Z"
+                stroke="black"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <path
+                d="M30 36.25V16.25C30 15.587 29.7366 14.9511 29.2678 14.4822C28.7989 14.0134 28.163 13.75 27.5 13.75H22.5C21.837 13.75 21.2011 14.0134 20.7322 14.4822C20.2634 14.9511 20 15.587 20 16.25V36.25"
+                stroke="black"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </span>
           <span>
             <Image src={inbox} />
           </span>
