@@ -27,8 +27,8 @@ export const Header = ({ headerHeight }) => {
               defaultValue={locale}
               onChange={handleLang}
             >
-              <option>KZ</option>
               <option>EN</option>
+              <option>KZ</option>
               <option>RU</option>
             </select>
             <div
