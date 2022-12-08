@@ -22,3 +22,8 @@
   top: 42px;
   right: 8px;
 }
+
+.selectLang {
+  border: none;
+  outline: none;
+}
